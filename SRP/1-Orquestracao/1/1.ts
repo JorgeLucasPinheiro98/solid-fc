@@ -1,20 +1,45 @@
-class BookingService {
+class BookingServiceResposta {
+  constructor(
+    private validateDate: ValidateDate,
+    private calculatePrice: CalculatePrice,
+    private sendEmail: SendEmail,
+  ) {}
+
   processBooking(bookingDetails: any) {
     // Validação das datas
-    if (bookingDetails.startDate >= bookingDetails.endDate) {
-      throw new Error("Data de check-out deve ser após a data de check-in");
-    }
+    this.validateDate.execute(bookingDetails.startDate, bookingDetails.endDate);
 
     // Cálculo do preço total
-    const durationInDays = Math.ceil(
-      (bookingDetails.endDate.getTime() - bookingDetails.startDate.getTime()) /
-        (1000 * 60 * 60 * 24)
+    const totalPrice = this.calculatePrice.execute(
+      bookingDetails.startDate, 
+      bookingDetails.endDate, 
+      bookingDetails.dailyRate
     );
-    const totalPrice = bookingDetails.dailyRate * durationInDays;
-
     console.log(`Preço total calculado: R$${totalPrice}`);
 
     // Envio de confirmação por e-mail
-    console.log(`Enviando e-mail de confirmação para ${bookingDetails.email}`);
+    this.sendEmail.execute(bookingDetails.email);
+  }
+}
+
+class ValidateDate {
+  execute(startDate: any, endDate: any) {
+    if(startDate >= endDate) {
+      throw new Error('Data do check-out deve ser após a data de check-in');
+    };
+  }
+}
+
+class CalculatePrice {
+  execute(startDate: any, endDate: any, dailyRate: any) {
+    const durationInDays = Math.ceil(
+      (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)); 
+      return dailyRate * durationInDays;
+  }
+}
+
+class SendEmail {
+  execute(email: any) {
+    return console.log(`Enviando e-mail de confirmação para ${email}`)
   }
 }
