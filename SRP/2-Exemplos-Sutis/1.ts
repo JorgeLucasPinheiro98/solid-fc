@@ -7,7 +7,7 @@ interface UserDTO {
 }
 
 // Serviço de cadastro de usuário
-class UserRegistrationService {
+class UserRegistrationService1 {
   registerUser(user: UserDTO) {
     if (!user.password) {
       throw new Error("Senha é obrigatória");
@@ -17,7 +17,7 @@ class UserRegistrationService {
 }
 
 // Serviço de consulta de usuário
-class UserQueryService {
+class UserQueryService1 {
   getUserById(id: string): UserDTO {
     return {
       id,
@@ -29,13 +29,13 @@ class UserQueryService {
 }
 
 // Uso
-const registrationService = new UserRegistrationService();
+const registrationService1 = new UserRegistrationService();
 registrationService.registerUser({
   name: "Alice",
   email: "alice@email.com",
   password: "123456",
 });
 
-const queryService = new UserQueryService();
-const user = queryService.getUserById("1");
+const queryService1 = new UserQueryService();
+const user1 = queryService.getUserById("1");
 console.log("Usuário consultado:", user);

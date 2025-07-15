@@ -1,14 +1,28 @@
-class FileUploadService {
+class FileUploadServices {
+  constructor(
+    private compressFile: compressFile,
+    private sendFile: sendFile,
+  ) {
+
+  }
   uploadFile(file: Buffer, destination: string) {
     // Compressão do arquivo
-    const compressedFile = this.compressFile(file);
+    const compressedFile = this.compressFile.execute(file);
 
     // Envio do arquivo
-    console.log(`Enviando arquivo para ${destination}`);
+    this.sendFile.execute(destination);
   }
+}
 
-  private compressFile(file: Buffer): Buffer {
-    console.log("Comprimindo arquivo...");
-    return file.slice(0, file.length / 2); // Exemplo de compressão
+class compressFile{
+  execute(file: Buffer): Buffer {
+    console.log('comprimindo arquivo...');
+    return file.slice(0, file.length / 2);
+  }
+}
+
+class sendFile{
+  execute(destination: string) {
+    console.log(`Enviando arquivo para ${destination}`);
   }
 }

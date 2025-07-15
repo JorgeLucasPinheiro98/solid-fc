@@ -1,0 +1,25 @@
+{
+  "name": "solid-fc",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JorgeLucasPinheiro98/solid-fc.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JorgeLucasPinheiro98/solid-fc/issues"
+  },
+  "homepage": "https://github.com/JorgeLucasPinheiro98/solid-fc#readme",
+  "description": "",
+  "dependencies": {
+    "@types/jest": "^30.0.0",
+    "jest": "^30.0.4",
+    "typescript": "^5.8.3"
+  }
+}
