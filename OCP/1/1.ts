@@ -1,15 +1,27 @@
-class ReportProcessor {
-  process(reportType: string) {
-    if (reportType === "PDF") {
-      console.log("Processing PDF report...");
-    } else if (reportType === "CSV") {
-      console.log("Processing CSV report...");
-    } else {
-      console.log("Unknown report type!");
-    }
+class ReportProcessory {
+  process(report) {
+    report.process()
   }
 }
 
-const processor = new ReportProcessor();
-processor.process("PDF");
-processor.process("CSV");
+interface IReportProcessor {
+  process(): void;
+};
+
+class ReportProcessorPDF implements IReportProcessor{
+  process(): void {
+    console.log("Processing PDF report...");
+  };
+
+};
+
+class ReportProcessorCSV implements IReportProcessor{
+  process(): void {
+    console.log("Processing CSV report...");
+  };
+
+};
+
+const processory = new ReportProcessor();
+const report = new ReportProcessorPDF()
+processory.process(report)

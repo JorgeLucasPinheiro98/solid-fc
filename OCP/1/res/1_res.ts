@@ -9,6 +9,12 @@ class PDFReport implements Report {
 }
 
 class CSVReport implements Report {
+  body: ReportBody | null;
+  type: string;
+  url: string;
+  toJSON() {
+    throw new Error("Method not implemented.");
+  }
   process() {
     console.log("Processing CSV report...");
   }
